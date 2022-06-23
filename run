@@ -1,0 +1,9 @@
+docker run -dit  -v /dockerdata/var/lib/bind:/var/lib/bind -v /dockerdata/var/cache/bind:/var/cache/bind -v /dockerdata/etc/bind:/etc/bind  --net=gl-ens1-macvlan --name=bind --hostname=bind -ip=192.168.0.190 --restart=always ctraxler/bind-docker:latest
+
+
+
+docker run -dit  \
+    --mount type=bind,source=/dockerdata/var/lib/bind,target=/var/lib/bind \
+    --mount type=bind,source=/dockerdata/var/cache/bind,target=/var/cache/bind \
+    --mount type=bind,source=/dockerdata/etc/bind,target=/etc/bind  \
+    --net=gl-ens1-macvlan  --hostname=bind --name=bind --ip=192.168.0.190 --restart=always ctraxler/bind-docker:latest
